@@ -79,7 +79,7 @@ class GildedRose {
         descreaseQuality(item);
 
         if (item.sellIn < DEFAULT_ITEM_DOUBLE_QUALITY_DECREASE_SELL_IN_THRESHOLD) {
-            decreaseSellIn(item);
+            descreaseQuality(item);
         }
     }
 
@@ -94,7 +94,7 @@ class GildedRose {
     }
 
     private void descreaseQuality(Item item) {
-        if (item.quality < MIN_QUALITY) {
+        if (item.quality > MIN_QUALITY) {
             item.quality -= 1;
         }
     }
