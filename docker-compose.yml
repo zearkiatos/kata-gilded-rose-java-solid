@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kata-gilded-rose-java-app
+    volumes: 
+      - ".:/usr/src/myapp"
