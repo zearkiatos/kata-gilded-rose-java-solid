@@ -13,7 +13,7 @@ public class GildedRoseShould {
     public void testThatSellInValueIsDecreased() {
         Item whateverItem = new Item("whatever", 10, 0);
 
-        GildedRose gildedRose = new GildedRose(arrayWith(whateverItem));
+        UpdatableItemFactory gildedRose = new UpdatableItemFactory(arrayWith(whateverItem));
         gildedRose.updateQuality();
 
         assertEquals(whateverItem.sellIn, 9);
@@ -23,7 +23,7 @@ public class GildedRoseShould {
     public void testThatQualityValueIsDecreased() {
         Item whateverItem = new Item("whatever", 1, 10);
 
-        GildedRose gildedRose = new GildedRose(arrayWith(whateverItem));
+        UpdatableItemFactory gildedRose = new UpdatableItemFactory(arrayWith(whateverItem));
         gildedRose.updateQuality();
 
         assertEquals(whateverItem.quality, 9);
@@ -33,7 +33,7 @@ public class GildedRoseShould {
     public void testThatQualityDecreasesTwiceAsMuchWhenSellByIsPassed() {
         Item whateverItem = new Item("whatever", 0, 10);
 
-        GildedRose gildedRose = new GildedRose(arrayWith(whateverItem));
+        UpdatableItemFactory gildedRose = new UpdatableItemFactory(arrayWith(whateverItem));
         gildedRose.updateQuality();
 
         assertEquals(whateverItem.quality, 8);
@@ -43,7 +43,7 @@ public class GildedRoseShould {
     public void testThatQualityIsNeverNegative() {
         Item whateverItem = new Item("whatever", 0, 0);
 
-        GildedRose gildedRose = new GildedRose(arrayWith(whateverItem));
+        UpdatableItemFactory gildedRose = new UpdatableItemFactory(arrayWith(whateverItem));
         gildedRose.updateQuality();
 
         assertEquals(whateverItem.quality, 0);
@@ -53,7 +53,7 @@ public class GildedRoseShould {
     public void testAgedBrieIncreasesQualityWithAge() {
         Item agedBrie = new Item("Aged Brie", 5, 1);
 
-        GildedRose gildedRose = new GildedRose(arrayWith(agedBrie));
+        UpdatableItemFactory gildedRose = new UpdatableItemFactory(arrayWith(agedBrie));
         gildedRose.updateQuality();
 
         assertEquals(agedBrie.quality, 2);
@@ -63,7 +63,7 @@ public class GildedRoseShould {
     public void testQualityNeverIncreasesPastFifty() {
         Item agedBrie = new Item("Aged Brie", 5, 50);
 
-        GildedRose gildedRose = new GildedRose(arrayWith(agedBrie));
+        UpdatableItemFactory gildedRose = new UpdatableItemFactory(arrayWith(agedBrie));
         gildedRose.updateQuality();
 
         assertEquals(agedBrie.quality, 50);
@@ -73,7 +73,7 @@ public class GildedRoseShould {
     public void testSulfurasNeverChanges() {
         Item sulfuras = new Item("Sulfuras, Hand of Ragnaros", 0, 25);
 
-        GildedRose gildedRose = new GildedRose(arrayWith(sulfuras));
+        UpdatableItemFactory gildedRose = new UpdatableItemFactory(arrayWith(sulfuras));
         gildedRose.updateQuality();
 
         assertEquals(sulfuras.quality, 25);
@@ -84,7 +84,7 @@ public class GildedRoseShould {
     public void testBackstagePassIncreasesQualityByOneIfSellByGreaterThenTen() {
         Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 11, 20);
 
-        GildedRose gildedRose = new GildedRose(arrayWith(backstagePasses));
+        UpdatableItemFactory gildedRose = new UpdatableItemFactory(arrayWith(backstagePasses));
         gildedRose.updateQuality();
 
         assertEquals(backstagePasses.quality, 21);
@@ -94,7 +94,7 @@ public class GildedRoseShould {
     public void testBackstagePassIncreasesQualityByTwoIfSellBySmallerThanTen() {
         Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 6, 20);
 
-        GildedRose gildedRose = new GildedRose(arrayWith(backstagePasses));
+        UpdatableItemFactory gildedRose = new UpdatableItemFactory(arrayWith(backstagePasses));
         gildedRose.updateQuality();
 
         assertEquals(backstagePasses.quality, 22);
@@ -104,7 +104,7 @@ public class GildedRoseShould {
     public void testBackstagePassIncreasesQualityByThreeIfSellBySmallerThanFive() {
         Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 20);
 
-        GildedRose gildedRose = new GildedRose(arrayWith(backstagePasses));
+        UpdatableItemFactory gildedRose = new UpdatableItemFactory(arrayWith(backstagePasses));
         gildedRose.updateQuality();
 
         assertEquals(backstagePasses.quality, 23);
@@ -114,7 +114,7 @@ public class GildedRoseShould {
     public void testBackstagePassLosesValueAfterSellByPasses() {
         Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 0, 20);
 
-        GildedRose gildedRose = new GildedRose(arrayWith(backstagePasses));
+        UpdatableItemFactory gildedRose = new UpdatableItemFactory(arrayWith(backstagePasses));
         gildedRose.updateQuality();
 
         assertEquals(backstagePasses.quality, 0);
