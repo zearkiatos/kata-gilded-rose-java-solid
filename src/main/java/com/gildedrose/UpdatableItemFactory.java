@@ -4,7 +4,6 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-
 final class UpdatableItemFactory {
     private static final String AGED_BRIE = "Aged Brie";
 
