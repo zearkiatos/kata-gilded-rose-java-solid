@@ -8,8 +8,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class GildedRoseShould {
-    private List<UpdatableItem> listOf(UpdatableItem item) {
-        return new ArrayList<UpdatableItem>() {
+    private List<Item> listOf(Item item) {
+        return new ArrayList<Item>() {
             {
                 add(item);
             }
@@ -18,62 +18,62 @@ public class GildedRoseShould {
 
     @Test
     public void testThatSellInValueIsDecreased() {
-        Item whateverItem = new Item("whatever", 10, 0);
-        UpdatableItem updatableItem = UpdatableItemFactory.basedOn(whateverItem);
+        Item whateverItem = ItemFactory.basedOn("whatever", 10, 0);
 
         GildedRose gildedRose = new GildedRose();
-        gildedRose.updateQuality(listOf(updatableItem));
+        gildedRose.updateQuality(listOf(whateverItem));
 
-        assertEquals(whateverItem.sellIn, 9);
+        ItemSellIn expectedSellIn = new ItemSellIn(9);
+        assertEquals(expectedSellIn, whateverItem.sellIn());
     }
 
     @Test
     public void testThatQualityValueIsDecreased() {
-        Item whateverItem = new Item("whatever", 1, 10);
-        UpdatableItem updatableItem = UpdatableItemFactory.basedOn(whateverItem);
+        Item whateverItem = ItemFactory.basedOn("whatever", 1, 10);
 
         GildedRose gildedRose = new GildedRose();
-        gildedRose.updateQuality(listOf(updatableItem));
+        gildedRose.updateQuality(listOf(whateverItem));
 
-        assertEquals(whateverItem.quality, 9);
+        ItemQuality expectedQuality = new ItemQuality(9);
+        assertEquals(expectedQuality, whateverItem.quality());
     }
 
     @Test
     public void testThatQualityDecreasesTwiceAsMuchWhenSellByIsPassed() {
-        Item whateverItem = new Item("whatever", 0, 10);
-        UpdatableItem updatableItem = UpdatableItemFactory.basedOn(whateverItem);
+        Item whateverItem = ItemFactory.basedOn("whatever", 0, 10);
 
         GildedRose gildedRose = new GildedRose();
-        gildedRose.updateQuality(listOf(updatableItem));
+        gildedRose.updateQuality(listOf(whateverItem));
 
-        assertEquals(whateverItem.quality, 8);
+        ItemQuality expectedQuality = new ItemQuality(0);
+        assertEquals(expectedQuality, whateverItem.quality());
     }
 
     @Test
     public void testThatQualityIsNeverNegative() {
-        Item whateverItem = new Item("whatever", 0, 0);
-        UpdatableItem updatableItem = UpdatableItemFactory.basedOn(whateverItem);
+        Item whateverItem = ItemFactory.basedOn("whatever", 0, 0);
 
         GildedRose gildedRose = new GildedRose();
-        gildedRose.updateQuality(listOf(updatableItem));
+        gildedRose.updateQuality(listOf(whateverItem));
 
-        assertEquals(whateverItem.quality, 0);
+        ItemQuality expectedQuality = new ItemQuality(0);
+        assertEquals(expectedQuality, whateverItem.quality());
     }
 
     @Test
     public void testAgedBrieIncreasesQualityWithAge() {
-        Item agedBrie = new Item("Aged Brie", 5, 1);
-        UpdatableItem updatableItem = UpdatableItemFactory.basedOn(agedBrie);
+        Item agedBrie = ItemFactory.basedOn("Aged Brie", 5, 1);
 
         GildedRose gildedRose = new GildedRose();
-        gildedRose.updateQuality(listOf(updatableItem));
+        gildedRose.updateQuality(listOf(agedBrie));
 
-        assertEquals(agedBrie.quality, 2);
+        ItemQuality expectedQuality = new ItemQuality(2);
+        assertEquals(expectedQuality, agedBrie.quality());
     }
 
     @Test
     public void testQualityNeverIncreasesPastFifty() {
-        Item agedBrie = new Item("Aged Brie", 5, 50);
+        Item agedBrie = ItemFactory.basedOn("Aged Brie", 5, 50);
         UpdatableItem updatableItem = UpdatableItemFactory.basedOn(agedBrie);
 
         GildedRose gildedRose = new GildedRose();

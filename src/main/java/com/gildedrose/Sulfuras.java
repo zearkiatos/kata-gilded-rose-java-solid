@@ -1,9 +1,9 @@
 package com.gildedrose;
 
-public class Sulfuras extends UpdatableItem {
+public class Sulfuras extends Item {
 
-    Sulfuras(Item item) {
-        super(item);
+    Sulfuras(final ItemName name, final ItemSellIn sellIn, final ItemQuality quality) {
+        super(name, sellIn, quality);
     }
 
     @Override

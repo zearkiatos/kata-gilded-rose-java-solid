@@ -1,18 +1,19 @@
 package com.gildedrose;
 
-final class AgedBrie extends UpdatableItem {
+final class AgedBrie extends Item {
     private static final int DOUBLE_QUALITY_DECREMENT_SELL_IN_THRESHOLD = 0;
 
-    AgedBrie(Item item) {
-        super(item);
+    AgedBrie(final ItemName name, final ItemSellIn sellIn, final ItemQuality quality) {
+        super(name, sellIn, quality);
     }
 
     @Override
     void update() {
-        decreaseSellIn();
+        decreaseQuality();
+
         increaseQuality();
 
-        if (sellIn() < DOUBLE_QUALITY_DECREMENT_SELL_IN_THRESHOLD) {
+        if (hasToBeSoldInLessThan(DOUBLE_QUALITY_DECREMENT_SELL_IN_THRESHOLD)) {
             increaseQuality();
         }
     }

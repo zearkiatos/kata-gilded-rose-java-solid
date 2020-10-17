@@ -1,28 +1,28 @@
 package com.gildedrose;
 
-final class BackstagePasses extends UpdatableItem {
+final class BackstagePasses extends Item {
 
     private static final int DOUBLE_QUALITY_INCREASE_SELL_IN_THRESHOLD = 10;
     private static final int TRIPLE_QUALITY_INCREASE_SELL_IN_THRESHOLD = 5;
     private static final int QUALITY_RESET_SELL_IN_THRESHOLD = 0;
 
-    BackstagePasses(Item item) {
-        super(item);
+    BackstagePasses(final ItemName name, final ItemSellIn sellIn, final ItemQuality quality) {
+        super(name, sellIn, quality);
     }
 
     @Override
     void update() {
         decreaseSellIn();
         increaseQuality();
-        if (sellIn() < DOUBLE_QUALITY_INCREASE_SELL_IN_THRESHOLD) {
+        if (hasToBeSoldInLessThan(DOUBLE_QUALITY_INCREASE_SELL_IN_THRESHOLD)) {
             increaseQuality();
         }
 
-        if (sellIn() < TRIPLE_QUALITY_INCREASE_SELL_IN_THRESHOLD) {
+        if (hasToBeSoldInLessThan(TRIPLE_QUALITY_INCREASE_SELL_IN_THRESHOLD)) {
             increaseQuality();
         }
 
-        if (sellIn() < QUALITY_RESET_SELL_IN_THRESHOLD) {
+        if (hasToBeSoldInLessThan(QUALITY_RESET_SELL_IN_THRESHOLD)) {
             resetQuality();
         }
     }
