@@ -1,21 +1,19 @@
 package com.gildedrose;
 
-final class StandardItem extends UpdatableItem {
+final class StandardItem extends Item {
     private static final int DOUBLE_QUALITY_DECREASE_SELL_IN_THRESHOLD = 0;
 
-    Item item;
-
-    StandardItem(Item item) {
-        super(item);
+    StandardItem(final ItemName name, final ItemSellIn sellIn, final ItemQuality quality) {
+        super(name, sellIn, quality);
     }
 
     @Override
     void update() {
         decreaseSellIn();
-        descreaseQuality();
+        decreaseQuality();
 
-        if (sellIn() < DOUBLE_QUALITY_DECREASE_SELL_IN_THRESHOLD) {
-            descreaseQuality();
+        if (hasToBeSoldInLessThan(DOUBLE_QUALITY_DECREASE_SELL_IN_THRESHOLD)) {
+            decreaseQuality();
         }
     }
 }
